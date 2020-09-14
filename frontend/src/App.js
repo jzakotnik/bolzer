@@ -1,24 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import { makeStyles } from "@material-ui/core/styles";
+
+import SignInSide from "./SignInSide";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+  paper: {
+    height: 140,
+    width: 100,
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
+  header: {
+    height: 48,
+    font: "courier",
+  },
+}));
 
 function App() {
+  //const classes = useStyles();
+  const [participants, setParticipants] = useState([
+    "Jure",
+    "Hanna",
+    "Carlotta",
+  ]);
+
+  function addParticipant(newParticipant) {
+    const newparticipants = [...participants];
+    newparticipants.push(newParticipant);
+    setParticipants(newparticipants);
+    console.log(participants);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <SignInSide participants={participants} addParticipant={addParticipant} />
     </div>
   );
 }
