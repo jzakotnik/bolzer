@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -25,11 +26,14 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   //const classes = useStyles();
-  const [participants, setParticipants] = useState([
-    "Jure",
-    "Hanna",
-    "Carlotta",
-  ]);
+  const [participants, setParticipants] = useState([]);
+
+  useEffect(async () => {
+    const result = await axios("http://localhost:4000/participants");
+    console.log("Got some results from the API Call:");
+    console.log(result);
+    setParticipants(result.data);
+  }, []);
 
   function addParticipant(newParticipant) {
     const newparticipants = [...participants];
