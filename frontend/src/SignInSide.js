@@ -12,6 +12,7 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -29,8 +30,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Impressum "}
-      <Link color="inherit" href="https://zakotnik.de/">
-        hier
+      <Link color="inherit" href="http://zakotnik.de/">
+        hier klicken
       </Link>{" "}
     </Typography>
   );
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundImage: "url(background.jpg)",
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -67,6 +68,10 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
+  avatarText: {
+    paddingLeft: "10px",
+    paddingRight: "50px",
+  },
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
@@ -78,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide(props) {
   const [enteredName, setEnteredName] = useState("");
+
   const classes = useStyles();
   //console.log("Propos changed");
 
@@ -94,6 +100,11 @@ export default function SignInSide(props) {
   const onSaveName = () => {
     props.addParticipant(enteredName);
     setEnteredName("");
+  };
+
+  const onDeleteName = (index) => {
+    console.log(index);
+    props.deleteParticipant(index);
   };
 
   return (
@@ -147,7 +158,20 @@ export default function SignInSide(props) {
                       <Avatar>
                         <InsertEmoticonIcon />
                       </Avatar>
-                      <ListItemText primary={value} />
+                      <ListItemText
+                        className={classes.avatarText}
+                        primary={value}
+                      />
+                      <Button
+                        onClick={() => onDeleteName(index)}
+                        key={index}
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                        startIcon={<DeleteForeverIcon />}
+                      >
+                        Nicht mehr da
+                      </Button>
                     </div>
                   </ListItemAvatar>
 

@@ -38,9 +38,19 @@ function App() {
     console.log(participants);
   }
 
+  function deleteParticipant(indexParticipant) {
+    const newparticipants = [...participants];
+    newparticipants.splice(indexParticipant, 1);
+    setParticipants(newparticipants);
+  }
+
   return (
     <div>
-      <SignInSide participants={participants} addParticipant={addParticipant} />
+      <SignInSide
+        participants={participants}
+        addParticipant={addParticipant}
+        deleteParticipant={deleteParticipant}
+      />
     </div>
   );
 }
