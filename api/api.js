@@ -2,7 +2,10 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
 
-const registeredParticipants = ["Jure", "Hanna"];
+var registeredParticipants = [
+  { id: "1", participant: "Jure" },
+  { id: "2", participant: "Hanna" },
+];
 
 var jsonParser = bodyParser.json();
 
@@ -39,9 +42,23 @@ app.get("/participants", (req, res, next) => {
 });
 
 app.post("/participant", jsonParser, (req, res, next) => {
-  console.log("Received new participant");
+  console.log("Received new participant, here is the new entry");
   console.log(req.body);
-  registeredParticipants.push(req.body.participant);
+  registeredParticipants.push(req.body);
+  res.json(registeredParticipants);
+  console.log("Received new participant, here is the db");
+  console.log(registeredParticipants);
+});
+
+app.delete("/participant", jsonParser, (req, res, next) => {
+  console.log("Received new participant for deletion, here is the new entry");
+  console.log(req.body);
+  const newparticipants = registeredParticipants.filter(function (obj) {
+    return obj.id !== req.body.participantID;
+  });
+  console.log("New database after deletion:");
+  console.log(newparticipants);
+  registeredParticipants = [...newparticipants];
   res.json(registeredParticipants);
 });
 

@@ -26,6 +26,8 @@ import Divider from "@material-ui/core/Divider";
 
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 
+import { v4 as uuidv4 } from "uuid";
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -87,11 +89,6 @@ export default function SignInSide(props) {
   const classes = useStyles();
   //console.log("Propos changed");
 
-  useEffect(() => {
-    // Update the document title using the browser API
-    //console.log("Effect executed");
-  });
-
   const onChange = (e) => {
     setEnteredName(e.target.value);
     //console.log(enteredName);
@@ -102,9 +99,9 @@ export default function SignInSide(props) {
     setEnteredName("");
   };
 
-  const onDeleteName = (index) => {
-    console.log(index);
-    props.deleteParticipant(index);
+  const onDeleteName = (id) => {
+    console.log(id);
+    props.deleteParticipant(id);
   };
 
   return (
@@ -119,7 +116,17 @@ export default function SignInSide(props) {
           <Typography component="h1" variant="h5">
             Ich bin auf dem Bolzer
           </Typography>
-          <form className={classes.form} noValidate>
+          <form
+            className={classes.form}
+            noValidate
+            onKeyPress={(ev) => {
+              //prevent enter from submitting form
+              //console.log(`Pressed keyCode ${ev.key}`);
+              if (ev.key === "Enter") {
+                ev.preventDefault();
+              }
+            }}
+          >
             <TextField
               variant="outlined"
               margin="normal"
@@ -150,9 +157,9 @@ export default function SignInSide(props) {
             Wer ist schon da
           </Typography>
           <List>
-            {props.participants.map((value, index) => {
+            {props.participants.map((value) => {
               return (
-                <div key={index}>
+                <div key={value.id}>
                   <ListItemAvatar>
                     <div className={classes.avatarList}>
                       <Avatar>
@@ -160,11 +167,11 @@ export default function SignInSide(props) {
                       </Avatar>
                       <ListItemText
                         className={classes.avatarText}
-                        primary={value}
+                        primary={value.participant}
                       />
                       <Button
-                        onClick={() => onDeleteName(index)}
-                        key={index}
+                        onClick={() => onDeleteName(value.id)}
+                        key={value.id}
                         variant="contained"
                         color="primary"
                         className={classes.button}
