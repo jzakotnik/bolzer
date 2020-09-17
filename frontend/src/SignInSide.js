@@ -21,6 +21,8 @@ import Divider from "@material-ui/core/Divider";
 
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 
+import { createMuiTheme } from "@material-ui/core/styles";
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -31,6 +33,23 @@ function Copyright() {
     </Typography>
   );
 }
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#757ce8",
+      main: "#3f50b5",
+      dark: "#002884",
+      contrastText: "#fff",
+    },
+    secondary: {
+      light: "#ff7961",
+      main: "#f44336",
+      dark: "#ba000d",
+      contrastText: "#000",
+    },
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -144,6 +163,7 @@ export default function SignInSide(props) {
               Ich bin da
             </Button>
           </form>
+          <Divider />
           <Avatar className={classes.avatar}>
             <LocationOnIcon />
           </Avatar>

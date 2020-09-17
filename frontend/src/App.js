@@ -5,13 +5,16 @@ import { v4 as uuidv4 } from "uuid";
 
 import SignInSide from "./SignInSide";
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+
 function App() {
   //const classes = useStyles();
   const [participants, setParticipants] = useState([]);
 
   async function fetchData() {
-    const result = await axios("http://localhost:4000/participants");
-    console.log("Got some results from the API Call:");
+    console.log(API_ENDPOINT);
+    const result = await axios(API_ENDPOINT + "/participants");
+    console.log("Got some results from the API Call:" + API_ENDPOINT);
     console.log(result);
     setParticipants(result.data);
   }
@@ -21,7 +24,7 @@ function App() {
     console.log(participantID);
     const result = await axios({
       method: "delete",
-      url: "http://localhost:4000/participant",
+      url: API_ENDPOINT + "/participant",
       data: { participantID },
     });
     console.log(result);
@@ -31,7 +34,7 @@ function App() {
     //const result = await axios("http://localhost:4000/participants");
     const result = await axios({
       method: "post",
-      url: "http://localhost:4000/participant",
+      url: API_ENDPOINT + "/participant",
       data: participant,
     });
     console.log("Inserted Data...");
@@ -43,7 +46,7 @@ function App() {
     // Your custom logic here
     console.log("Getting some data from API");
     fetchData();
-  }, 50000000);
+  }, 1000);
 
   useEffect(() => {
     fetchData();
