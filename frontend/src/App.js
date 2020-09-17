@@ -3,28 +3,7 @@ import axios from "axios";
 import useInterval from "use-interval";
 import { v4 as uuidv4 } from "uuid";
 
-import { makeStyles } from "@material-ui/core/styles";
-
 import SignInSide from "./SignInSide";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-  header: {
-    height: 48,
-    font: "courier",
-  },
-}));
 
 function App() {
   //const classes = useStyles();
@@ -57,6 +36,7 @@ function App() {
     });
     console.log("Inserted Data...");
     console.log(participant);
+    console.log(result);
   }
 
   useInterval(() => {

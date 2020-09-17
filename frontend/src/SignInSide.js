@@ -1,32 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import Divider from "@material-ui/core/Divider";
 
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-
-import { v4 as uuidv4 } from "uuid";
 
 function Copyright() {
   return (
@@ -137,6 +130,7 @@ export default function SignInSide(props) {
               id="participantName"
               label="Vorname"
               name="email"
+              inputProps={{ maxLength: 15 }}
               autoComplete="email"
               autoFocus
             />
@@ -177,7 +171,7 @@ export default function SignInSide(props) {
                         className={classes.button}
                         startIcon={<DeleteForeverIcon />}
                       >
-                        Nicht mehr da
+                        Weg
                       </Button>
                     </div>
                   </ListItemAvatar>
