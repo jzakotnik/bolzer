@@ -10,7 +10,7 @@ var registeredParticipants = [
 var jsonParser = bodyParser.json();
 
 var corsOptions = {
-  origin: "http://localhost",
+  origin: "https://bolzer.me",
 };
 
 app.use(function (req, res, next) {
