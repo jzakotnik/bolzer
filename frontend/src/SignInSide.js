@@ -27,7 +27,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Impressum "}
-      <Link color="inherit" href="http://zakotnik.de/">
+      <Link color="inherit" href="https://bolzer.me/impressum.html">
         hier klicken
       </Link>{" "}
     </Typography>
@@ -163,7 +163,7 @@ export default function SignInSide(props) {
               Ich bin da
             </Button>
           </form>
-          <Divider />
+
           <Avatar className={classes.avatar}>
             <LocationOnIcon />
           </Avatar>

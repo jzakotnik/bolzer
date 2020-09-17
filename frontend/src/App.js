@@ -12,10 +12,10 @@ function App() {
   const [participants, setParticipants] = useState([]);
 
   async function fetchData() {
-    console.log(API_ENDPOINT);
+    //console.log(API_ENDPOINT);
     const result = await axios(API_ENDPOINT + "/participants");
-    console.log("Got some results from the API Call:" + API_ENDPOINT);
-    console.log(result);
+    //console.log("Got some results from the API Call:" + API_ENDPOINT);
+    //console.log(result);
     setParticipants(result.data);
   }
 
@@ -38,15 +38,15 @@ function App() {
       data: participant,
     });
     console.log("Inserted Data...");
-    console.log(participant);
-    console.log(result);
+    //console.log(participant);
+    //console.log(result);
   }
 
   useInterval(() => {
     // Your custom logic here
-    console.log("Getting some data from API");
+    //console.log("Getting some data from API");
     fetchData();
-  }, 1000);
+  }, 10000);
 
   useEffect(() => {
     fetchData();
