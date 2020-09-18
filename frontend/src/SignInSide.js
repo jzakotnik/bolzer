@@ -70,6 +70,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    //backgroundRepeat: "no-repeat",
+    //backgroundSize: "cover",
+    //backgroundPosition: "center",
+    //backgroundImage: "url(background.jpg)",
   },
   avatarList: {
     margin: 10,
