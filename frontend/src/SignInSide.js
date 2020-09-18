@@ -28,7 +28,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Impressum "}
       <Link color="inherit" href="https://bolzer.me/impressum.html">
-        hier klicken
+        hier klicken, made by jure
       </Link>{" "}
     </Typography>
   );
@@ -70,6 +70,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor:
+      theme.palette.type === "light"
+        ? theme.palette.grey[50]
+        : theme.palette.grey[900],
     //backgroundRepeat: "no-repeat",
     //backgroundSize: "cover",
     //backgroundPosition: "center",
