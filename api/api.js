@@ -6,17 +6,15 @@ var registeredParticipants = [];
 
 var jsonParser = bodyParser.json();
 
-app.use(function (req, res, next) {
-  const allowedOrigins = [
+var corsOptions = {
+  origin: [
     "https://bolzer.me",
     "http://localhost:4000",
     "https://localhost:4000",
-  ];
-  const origin = req.headers.origin;
-  console.log(req.headers.origin);
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
+  ],
+};
+
+app.use(function (req, res, next) {
   // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "*");
 
@@ -25,6 +23,16 @@ app.use(function (req, res, next) {
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
   );
+
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader("Access-Control-Allow-Credentials", true);
 
   // Pass to next layer of middleware
   next();
@@ -58,6 +66,6 @@ app.delete("/participant", jsonParser, (req, res, next) => {
   res.json(registeredParticipants);
 });
 
-app.listen(4000, () => {
-  console.log("Server running on port 4000");
+app.listen(4001, () => {
+  console.log("Server running on port 4001");
 });
