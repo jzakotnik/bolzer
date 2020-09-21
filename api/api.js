@@ -45,7 +45,7 @@ app.use(function (req, res, next) {
 app.get("/participants", (req, res, next) => {
   registeredParticipants.length > 0
     ? res.json(registeredParticipants)
-    : res.json(["Noch niemand"]);
+    : res.json([{ id: "1", participant: "Noch niemand" }]);
   //res.json(registeredParticipants);
 });
 
