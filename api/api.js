@@ -6,15 +6,16 @@ var registeredParticipants = [];
 
 var jsonParser = bodyParser.json();
 
-var corsOptions = {
-  origin: [
+app.use(function (req, res, next) {
+  const allowedOrigins = [
     "https://bolzer.me",
     "http://localhost:4000",
     "https://localhost:4000",
-  ],
-};
-
-app.use(function (req, res, next) {
+  ];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
   // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "*");
 
