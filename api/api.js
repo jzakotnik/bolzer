@@ -1,5 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var cors = require("cors");
+
 var app = express();
 
 var registeredParticipants = [];
@@ -13,6 +15,8 @@ var corsOptions = {
     "https://localhost:4000",
   ],
 };
+
+app.use(cors());
 
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
