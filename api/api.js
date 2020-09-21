@@ -2,10 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
 
-var registeredParticipants = [
-  { id: "1", participant: "Jure" },
-  { id: "2", participant: "Hanna" },
-];
+var registeredParticipants = [];
 
 var jsonParser = bodyParser.json();
 
@@ -38,7 +35,10 @@ app.use(function (req, res, next) {
 });
 
 app.get("/participants", (req, res, next) => {
-  res.json(registeredParticipants);
+  registeredParticipants.length > 0
+    ? res.json(registeredParticipants)
+    : res.json(["Noch niemand"]);
+  //res.json(registeredParticipants);
 });
 
 app.post("/participant", jsonParser, (req, res, next) => {
