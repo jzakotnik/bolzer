@@ -50,6 +50,7 @@ app.get("/participants", (req, res, next) => {
 });
 
 app.post("/participant", jsonParser, (req, res, next) => {
+  console.log("-------------- new participant ------------------");
   console.log("Received new participant, here is the new entry");
   console.log(req.body);
   registeredParticipants.push(req.body);
